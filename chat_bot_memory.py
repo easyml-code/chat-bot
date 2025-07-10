@@ -1,6 +1,7 @@
 from langchain_groq import ChatGroq
 from langchain.chains import LLMChain
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langchain.memory import ConversationBufferMemory
 from dotenv import load_dotenv
 import pydantic
@@ -18,9 +19,11 @@ llm = ChatGroq(
 )
 
 prompt = ChatPromptTemplate.from_messages([
-    ("system", "you are a helpful chat-bot"),
+    SystemMessage(content="you are a helpful chat-bot"),
+    # ("system", "you are a helpful chat-bot"),
     MessagesPlaceholder(variable_name="chat_history"),
-    ("human", "{input}")
+    HumanMessage(content="{input}"),
+    # ("human", "{input}")
 ])
 
 # memory = ConversationBufferMemory(
