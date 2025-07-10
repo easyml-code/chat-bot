@@ -1,0 +1,14 @@
+{'vikram_38f6c07d-4a89-4a73-9478-55bb4d59bef8': 
+InMemoryChatMessageHistory(messages=[
+    
+HumanMessage(content='hi', additional_kwargs={}, response_metadata={}), 
+AIMessage(content="Hi! It's nice to meet you! Is there something I can help you with, or would you like to chat about something in particular? I'm all ears (or rather, all text)!", 
+additional_kwargs={}, response_metadata={'token_usage': {'completion_tokens': 41, 'prompt_tokens': 22, 'total_tokens': 63, 'completion_time': 0.145917006, 'prompt_time': 0.000650009, 'queue_time': 0.053822581, 
+'total_time': 0.146567015}, 'model_name': 'llama3-70b-8192', 'system_fingerprint': 'fp_dd4ae1c591', 'finish_reason': 'stop', 'logprobs': None}, id='run--21813420-dad8-41be-af06-62bdf270c112-0', usage_metadata={'input_tokens': 22, 'output_tokens': 41, 'total_tokens': 63}), 
+
+HumanMessage(content='2*3', additional_kwargs={}, response_metadata={}), 
+AIMessage(content='Easy math problem!\n\n2 * 3 = 6', additional_kwargs={}, response_metadata={'token_usage': {'completion_tokens': 12, 'prompt_tokens': 75, 'total_tokens': 87, 'completion_time': 0.058632102, 'prompt_time': 0.002072054, 'queue_time': 0.053736885000000005, 'total_time': 0.060704156}, 'model_name': 'llama3-70b-8192', 'system_fingerprint': 'fp_dd4ae1c591', 'finish_reason': 'stop', 'logprobs': None}, id='run--734db5a0-2048-4a36-aa56-4e2a539061e5-0', usage_metadata={'input_tokens': 75, 'output_tokens': 12, 'total_tokens': 87}), 
+
+HumanMessage(content='answer*2', additional_kwargs={}, response_metadata={}), 
+AIMessage(content='You want to multiply the previous answer by 2?\n\n6 * 2 = 12', additional_kwargs={}, response_metadata={'token_usage': {'completion_tokens': 19, 'prompt_tokens': 99, 'total_tokens': 118, 'completion_time': 0.076668328, 'prompt_time': 0.00286066, 'queue_time': 0.05696125, 'total_time': 0.079528988}, 'model_name': 'llama3-70b-8192', 'system_fingerprint': 'fp_dd4ae1c591', 'finish_reason': 'stop', 'logprobs': None}, id='run--2029515e-dd26-4c8b-b8c6-edebf4220ce2-0', usage_metadata={'input_tokens': 99, 'output_tokens': 19, 'total_tokens': 118})
+])}

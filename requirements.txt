@@ -1,0 +1,6 @@
+langchain
+langgraph
+langchain_community
+pydantic
+langchain_groq
+uvicorn
