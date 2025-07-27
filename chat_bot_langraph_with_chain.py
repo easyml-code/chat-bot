@@ -1,5 +1,8 @@
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
+from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain.memory import ConversationBufferMemory
 from langgraph.graph import StateGraph, START, END
+from langchain.chains import LLMChain
 from langchain_groq import ChatGroq
 from pydantic import BaseModel
 from typing import List
@@ -18,16 +21,35 @@ llm = ChatGroq(
                 max_tokens=1024
 )
 
+prompt = ChatPromptTemplate.from_messages([
+    SystemMessage(content="you are a helpful chat-bot"),
+    MessagesPlaceholder(variable_name="chat_history"),
+    HumanMessage(content="{input}")
+])
+
+memory = ConversationBufferMemory(
+    return_messages=True,
+    memory_key="chat_history"
+)
+
+chain = LLMChain(
+    llm=llm,
+    prompt=prompt,
+    memory=memory
+)
+
 class ChatState(BaseModel):
     input: str
     response: str
-    messages: List[BaseMessage]
+    # messages: List[BaseMessage]
 
 def chat(state: ChatState) -> ChatState:
-    state.messages.append(HumanMessage(content=state.input))
-    result = llm.invoke(state.messages)
-    state.response = result.content
-    state.messages.append(AIMessage(content=state.response))
+    print("state: ", state)
+    result = chain.invoke({"input": state.input})
+    print("\n\n\n")
+    print(result)
+    print("\n\n\n")
+    state.response = result['text']
     return state
 
 builder = StateGraph(ChatState)
@@ -39,18 +61,18 @@ graph = builder.compile()
 print(graph)
 
 def main():
-    messages=[
-        SystemMessage(content="you are an intelligent chat-bot")
-    ]
+    # messages=[
+    #     SystemMessage(content="you are an intelligent chat-bot")
+    # ]
     while True:
         query = input("User: ")
         if query=="quit":
             break
-        state = ChatState(input=query, response="", messages=messages)
+        state = ChatState(input=query, response="")
         result = graph.invoke(state)
-        # print(result)
+        print(result)
         print("AI: ", result['response'])
-        messages=result['messages']
+        # messages=result['messages']
 
 if __name__ == "__main__":
     main()
